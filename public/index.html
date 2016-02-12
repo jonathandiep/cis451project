@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <base href="/">
+
+    <title ng-bind="'La Shope | ' + title"></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://bootswatch.com/readable/bootstrap.min.css"/>
+    <link href="css/output.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">La Shope</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="/category/Snacks">Snacks <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/category/Snacks/Cookies">Cookies</a>
+                </li>
+                <li>
+                  <a href="/category/Snacks/Chips">Chips</a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="/category/Drinks">Drinks <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="/category/Drinks/Juice">Juice</a>
+                </li>
+                <li>
+                  <a href="/category/Drinks/Soda">Soda</a>
+                </li>
+                <li>
+                  <a href="/category/Drinks/Water">Water</a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="">Beer (coming soon)</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="col-sm-1 col-md-1 pull-right">
+            <i class="fa fa-shopping-cart fa-3x"><span class="badge"></i>{{cart}}</span>
+          </div>
+
+          <div id="search-bar" class="col-sm-4 col-md-4 pull-right" ng-controller="commonCtrl">
+            <form class="navbar-form" role="search">
+              <div class="input-group pull-right">
+                <input type="text" class="form-control" placeholder="Search" ng-model="term">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit" ng-click="go('/search')">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+    </nav>
+
+    <div class="container">
+      <div ng-view></div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <div class="container">
+      <footer>
+        <div class="row">
+          <div class="col-xs-12">
+            <p>Copyright &copy; La Shope 2016</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- /.container -->
+
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="app/home.js"></script>
+    <script src="app/category.js"></script>
+    <script src="app/product.js"></script>
+    <script src="app/search.js"></script>
+
+  </body>
+
+</html>

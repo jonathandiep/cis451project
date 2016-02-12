@@ -1,0 +1,16 @@
+{
+  "name": "cis-451-project",
+  "version": "1.0.0",
+  "description": "Project for CIS 451 class.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "node-sass sass/build.scss public/css/output.css",
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}

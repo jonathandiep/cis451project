@@ -1,0 +1,82 @@
+body {
+  padding-top: 70px;
+  /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.hero-spacer {
+  margin-top: 50px;
+}
+
+.hero-feature {
+  margin-bottom: 30px;
+}
+
+ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;
+}
+
+.fa-shopping-cart {
+  padding-top: 10px;
+}
+
+/* category | products */
+.category-images {
+  max-height: 300px;
+  width: auto;
+}
+
+ol .breadcrumb {
+  margin-top: 10px;
+}
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control, .item {
+    border-radius: 4px;
+}
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+    h4 {
+      white-space: nowrap;
+    }
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+    .caption-full {
+      padding: 9px;
+      color: #333;
+    }
+    img {
+      width: 100%;
+    }
+}
+
+#search-bar {
+  float: right;
+  margin-left: 150px;
+}
+
+footer {
+  margin: 25px 0;
+}
+
+@media (min-width: 979px) {
+  ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;
+  }
+}
