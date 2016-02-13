@@ -19,28 +19,17 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
   max-height: 300px;
   width: auto; }
 
-ol .breadcrumb {
+.breadcrumb {
   margin-top: 10px; }
 
 .slide-image {
   width: 100%; }
-
-.carousel-holder {
-  margin-bottom: 30px; }
-
-.carousel-control, .item {
-  border-radius: 4px; }
 
 .caption {
   height: 130px;
   overflow: hidden; }
   .caption h4 {
     white-space: nowrap; }
-
-.ratings {
-  padding-right: 10px;
-  padding-left: 10px;
-  color: #d17581; }
 
 .thumbnail {
   padding: 0; }
@@ -51,8 +40,7 @@ ol .breadcrumb {
     width: 100%; }
 
 #search-bar {
-  float: right;
-  margin-left: 150px; }
+  float: right; }
 
 footer {
   margin: 25px 0; }

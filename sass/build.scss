@@ -25,20 +25,12 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
   width: auto;
 }
 
-ol .breadcrumb {
+.breadcrumb {
   margin-top: 10px;
 }
 
 .slide-image {
     width: 100%;
-}
-
-.carousel-holder {
-    margin-bottom: 30px;
-}
-
-.carousel-control, .item {
-    border-radius: 4px;
 }
 
 .caption {
@@ -47,12 +39,6 @@ ol .breadcrumb {
     h4 {
       white-space: nowrap;
     }
-}
-
-.ratings {
-    padding-right: 10px;
-    padding-left: 10px;
-    color: #d17581;
 }
 
 .thumbnail {
@@ -68,7 +54,6 @@ ol .breadcrumb {
 
 #search-bar {
   float: right;
-  margin-left: 150px;
 }
 
 footer {

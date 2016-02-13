@@ -1,13 +1,14 @@
 <ol class="breadcrumb">
   <li><a href="/">Home</a></li>
-  <li><a ng-href="/category/{{category}}">{{category}}</a></li>
-  <li ng-show="type"><a ng-href="/category/{{category}}/{{type}}">{{type}}</a></li>
+  <li ng-hide="type" class="active">{{category}}</li>
+  <li ng-show="type"><a ng-href="/category/{{category}}">{{category}}</a></li>
+  <li ng-show="type" class="active">{{type}}</li>
 </ol>
 
 <div class="row">
 
   <div class="col-md-2">
-    <p class="lead">{{category}}</p>
+    <p class="lead"><a ng-href="/category/{{category}}">{{category}}</a></p>
     <div class="list-group" ng-repeat="item in list">
       <a ng-href="/category/{{category}}/{{item.categoryname}}" class="list-group-item">{{item.categoryname}}</a>
     </div>

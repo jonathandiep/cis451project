@@ -13,7 +13,6 @@ angular.module('search', ['ngRoute'])
 
   $http(req).then(function(res) {
     $scope.results = res.data;
-    console.log($scope.results);
   });
 
 }]);

@@ -77,9 +77,19 @@ app.get('/search-products', function(req, res) {
   });
 });
 
+// used to display product detail
 app.get('/product-detail', function(req, res) {
   var id = req.query.id;
   client.query('SELECT * FROM product WHERE productid = \'' + id + '\'', function(err, result) {
+    if (err) { console.error('error running query'); }
+    res.send(result.rows);
+  });
+});
+
+// used to get categories and subcategories when viewing a product
+app.get('/category-names', function(req, res) {
+  var id = req.query.id;
+  client.query('SELECT * FROM category WHERE categoryid = \'' + id + '\'', function(err, result) {
     if (err) { console.error('error running query'); }
     res.send(result.rows);
   });
