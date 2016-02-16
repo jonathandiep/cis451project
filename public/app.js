@@ -1,6 +1,6 @@
 var app = angular.module('app', ['ngRoute', 'home', 'category', 'product', 'search', 'cart']);
 
-app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+app.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) => {
   $routeProvider.when('/', {
     title: 'Home',
     templateUrl: 'views/home.html',
@@ -29,10 +29,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
 }]);
 
-app.controller('commonCtrl', ['$location', '$scope', '$http', function($location, $scope, $http) {
+app.controller('commonCtrl', ['$location', '$scope', '$http', ($location, $scope, $http) => {
   $scope.term;
 
-  $scope.results = function() {
+  $scope.results = () => {
     var req = {
       method: 'GET',
       url: 'http://localhost:5000/live-search',
@@ -41,19 +41,19 @@ app.controller('commonCtrl', ['$location', '$scope', '$http', function($location
       }
     };
 
-    $http(req).then(function(res) {
+    $http(req).then(res => {
       $scope.data = res.data;
       console.log($scope.data);
     });
   }
 
-  $scope.go = function(path) {
+  $scope.go = (path) => {
     $location.path(path + "/" + $scope.term);
   };
 }])
 
-app.run(['$rootScope', function($rootScope) {
-  $rootScope.$on('$routeChangeSuccess', function(event, curr, prev) {
+app.run(['$rootScope', ($rootScope) => {
+  $rootScope.$on('$routeChangeSuccess', (event, curr, prev) => {
     $rootScope.title = curr.$$route.title;
   })
 }]);

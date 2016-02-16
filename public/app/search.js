@@ -1,6 +1,6 @@
 angular.module('search', ['ngRoute'])
 
-.controller('searchCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+.controller('searchCtrl', ['$scope', '$http', '$routeParams', ($scope, $http, $routeParams) => {
   $scope.term = $routeParams.term;
 
   var req = {
@@ -11,7 +11,7 @@ angular.module('search', ['ngRoute'])
     }
   };
 
-  $http(req).then(function(res) {
+  $http(req).then((res) => {
     $scope.results = res.data;
   });
 

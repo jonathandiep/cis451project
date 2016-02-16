@@ -1,5 +1,5 @@
 angular.module('cart', ['ngRoute'])
 
-.controller('cartCtrl', ['$scope', function($scope) {
+.controller('cartCtrl', ['$scope', ($scope) => {
   $scope.cart = 0;
 }]);

@@ -1,6 +1,6 @@
 angular.module('category', ['ngRoute'])
 
-.controller('categoryCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+.controller('categoryCtrl', ['$scope', '$http', '$routeParams', ($scope, $http, $routeParams) => {
   $scope.category = $routeParams.category;
   $scope.type = $routeParams.type;
 
@@ -20,7 +20,7 @@ angular.module('category', ['ngRoute'])
     }
   }
 
-  $http(req1).then(function(res) {
+  $http(req1).then((res) => {
     $scope.products = res.data;
   })
 
@@ -32,7 +32,7 @@ angular.module('category', ['ngRoute'])
     }
   };
 
-  $http(req2).then(function(res) {
+  $http(req2).then((res) => {
     $scope.list = res.data;
   })
 

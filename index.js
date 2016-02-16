@@ -16,103 +16,103 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(function(req, res, next) {
+app.use(((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
   next();
-});
+}));
 
 app.use(morgan('dev'));
 
 app.use(express.static(__dirname + '/public'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
-client.connect(function(err) {
+client.connect( err => {
   if (err) { return console.error('could not connect to postgres'); }
 });
 
-app.get('/', ((req, res) => {
+app.get('/', (req, res) => {
   res.sendFile('/public/index.html');
-}));
+});
 
-app.get('/search', ((req, res) => {
+app.get('/search', (req, res) => {
   res.sendFile('/public/views/index.html');
-}));
+});
 
 // used to show products when viewing a category
-app.get('/product-in-categories', ((req, res) => {
+app.get('/product-in-categories', (req, res) => {
   var category = req.query.category;
   var type = req.query.type;
   if (type) {
-    client.query('SELECT * FROM product INNER JOIN category ON product.categoryid = category.categoryid WHERE category.categoryname = \'' + type + '\'', ((err, result) => {
+    client.query('SELECT * FROM product INNER JOIN category ON product.categoryid = category.categoryid WHERE category.categoryname = \'' + type + '\'', (err, result) => {
       if (err) { return console.error('error running query'); }
       res.send(result.rows);
-    }));
+    });
   } else {
-    client.query('SELECT * FROM product INNER JOIN category ON product.categoryid = category.categoryid WHERE category.parent = \'' + category + '\'', ((err, result) => {
+    client.query('SELECT * FROM product INNER JOIN category ON product.categoryid = category.categoryid WHERE category.parent = \'' + category + '\'', (err, result) => {
       if (err) { return console.error('error running query'); }
       res.send(result.rows);
-    }));
+    });
   }
-}));
+});
 
 // used for subcategories when viewing a category
-app.get('/category-list', ((req, res) => {
+app.get('/category-list', (req, res) => {
   var parent = req.query.parent;
-  client.query('SELECT categoryname FROM category WHERE parent = \'' + parent + '\'', ((err, result) => {
+  client.query('SELECT categoryname FROM category WHERE parent = \'' + parent + '\'', (err, result) => {
     if (err) { return console.error('error running query'); }
     res.send(result.rows);
-  }));
-}));
+  });
+});
 
 // used to display search results
-app.get('/search-products', ((req, res) => {
+app.get('/search-products', (req, res) => {
   let term = req.query.term;
   if (term.includes("'")) {
     var append = "'" + term.substring(term.indexOf("'"));
     term = term.substring(0, term.indexOf("'")) + append;
   }
-  client.query('SELECT * FROM product WHERE LOWER(productname) LIKE LOWER(\'%' + term + '%\') OR productid = \'' + term + '\'', ((err, result) => {
+  client.query('SELECT * FROM product WHERE LOWER(productname) LIKE LOWER(\'%' + term + '%\') OR productid = \'' + term + '\'', (err, result) => {
     if (err) { return console.error('error running query'); }
     res.send(result.rows);
-  }));
-}));
+  });
+});
 
 // used to display live search results
-app.get('/live-search', ((req, res) => {
+app.get('/live-search', (req, res) => {
   let term = req.query.term;
   if (term.includes("'")) {
     var append = "'" + term.substring(term.indexOf("'"));
     term = term.substring(0, term.indexOf("'")) + append;
   }
-  client.query('SELECT * FROM product WHERE LOWER(productname) LIKE LOWER(\'%' + term + '%\') OR productid = \'' + term + '\' LIMIT 3', ((err, result) => {
+  client.query('SELECT * FROM product WHERE LOWER(productname) LIKE LOWER(\'%' + term + '%\') OR productid = \'' + term + '\' LIMIT 3', (err, result) => {
     if (err) { return console.error('error running query'); }
     res.send(result.rows);
-  }));
-}));
+  });
+});
 
 // used to display product detail
-app.get('/product-detail', ((req, res) => {
+app.get('/product-detail', (req, res) => {
   var id = req.query.id;
-  client.query('SELECT * FROM product WHERE productid = \'' + id + '\'', ((err, result) => {
+  client.query('SELECT * FROM product WHERE productid = \'' + id + '\'', (err, result) => {
     if (err) { console.error('error running query'); }
     res.send(result.rows);
-  }));
-}));
+  });
+});
 
 // used to get categories and subcategories when viewing a product
-app.get('/category-names', ((req, res) => {
+app.get('/category-names', (req, res) => {
   var id = req.query.id;
-  client.query('SELECT * FROM category WHERE categoryid = \'' + id + '\'', ((err, result) => {
+  client.query('SELECT * FROM category WHERE categoryid = \'' + id + '\'', (err, result) => {
     if (err) { console.error('error running query'); }
     res.send(result.rows);
-  }));
-}));
+  });
+});
 
-app.get('/*', ((req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
-}));
+});
 
 app.listen(port);
 console.log('working on port: ' + port);

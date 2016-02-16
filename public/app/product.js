@@ -1,6 +1,6 @@
 angular.module('product', ['ngRoute'])
 
-.controller('productCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+.controller('productCtrl', ['$scope', '$http', '$routeParams', ($scope, $http, $routeParams) => {
   $scope.productid = $routeParams.productid;
 
    var req1 = {
@@ -11,7 +11,7 @@ angular.module('product', ['ngRoute'])
      }
    };
 
-   $http(req1).then(function(res) {
+   $http(req1).then((res) => {
      $scope.product = res.data[0];
      var req2 = {
        method: 'GET',
@@ -20,7 +20,7 @@ angular.module('product', ['ngRoute'])
          id: $scope.product.categoryid
        }
      };
-     $http(req2).then(function(ress) {
+     $http(req2).then((ress) => {
        $scope.categories = ress.data[0];
      })
    });
