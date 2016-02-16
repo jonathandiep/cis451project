@@ -66,14 +66,14 @@
             </li>
           </ul>
 
-          <div class="col-sm-1 col-md-1 pull-right">
-            <i class="fa fa-shopping-cart fa-3x"><span class="badge"></i>{{cart}}</span>
+          <div id="cart" class="col-sm-1 col-md-1 pull-right" ng-controller="cartCtrl">
+            <a ng-href="/cart"><span class="badge">{{cart}}<i class="fa fa-shopping-cart fa-2x"></i></span></a>
           </div>
 
           <div id="search-bar" class="col-sm-4 col-md-4 pull-right" ng-controller="commonCtrl">
             <form class="navbar-form" role="search">
               <div class="input-group pull-right">
-                <input type="text" class="form-control" placeholder="Search" ng-model="term">
+                <input type="text" class="form-control" placeholder="Search" ng-model="term" ng-change="results()">
                 <div class="input-group-btn">
                   <button class="btn btn-default" type="submit" ng-click="go('/search')">
                     <i class="glyphicon glyphicon-search"></i>
@@ -118,6 +118,7 @@
     <script src="app/category.js"></script>
     <script src="app/product.js"></script>
     <script src="app/search.js"></script>
+    <script src="app/cart.js"></script>
 
   </body>
 

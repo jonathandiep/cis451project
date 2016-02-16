@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'home', 'category', 'product', 'search']);
+var app = angular.module('app', ['ngRoute', 'home', 'category', 'product', 'search', 'cart']);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $routeProvider.when('/', {
@@ -17,6 +17,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     title: 'Search',
     templateUrl: 'views/search.html',
     controller: 'searchCtrl'
+  }).when('/cart', {
+    title: 'Cart',
+    templateUrl: 'views/cart.html',
+    controller: 'cartCtrl'
   }).otherwise({
     redirectTo: '/'
   });
@@ -25,8 +29,23 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
 }]);
 
-app.controller('commonCtrl', ['$location', '$scope', function($location, $scope) {
+app.controller('commonCtrl', ['$location', '$scope', '$http', function($location, $scope, $http) {
   $scope.term;
+
+  $scope.results = function() {
+    var req = {
+      method: 'GET',
+      url: 'http://localhost:5000/live-search',
+      params: {
+        term: $scope.term
+      }
+    };
+
+    $http(req).then(function(res) {
+      $scope.data = res.data;
+      console.log($scope.data);
+    });
+  }
 
   $scope.go = function(path) {
     $location.path(path + "/" + $scope.term);

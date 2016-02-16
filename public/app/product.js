@@ -11,11 +11,8 @@ angular.module('product', ['ngRoute'])
      }
    };
 
-
-
    $http(req1).then(function(res) {
      $scope.product = res.data[0];
-     console.log($scope.product);
      var req2 = {
        method: 'GET',
        url: 'http://localhost:5000/category-names',
@@ -25,7 +22,6 @@ angular.module('product', ['ngRoute'])
      };
      $http(req2).then(function(ress) {
        $scope.categories = ress.data[0];
-       console.log($scope.categories);
      })
    });
 

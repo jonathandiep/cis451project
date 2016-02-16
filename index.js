@@ -77,6 +77,19 @@ app.get('/search-products', function(req, res) {
   });
 });
 
+// used to display live search results
+app.get('/live-search', function(req, res) {
+  var term = req.query.term;
+  if (term.includes("'")) {
+    var append = "'" + term.substring(term.indexOf("'"));
+    term = term.substring(0, term.indexOf("'")) + append;
+  }
+  client.query('SELECT * FROM product WHERE LOWER(productname) LIKE LOWER(\'%' + term + '%\') OR productid = \'' + term + '\' LIMIT 3', function(err, result) {
+    if (err) { return console.error('error running query'); }
+    res.send(result.rows);
+  });
+});
+
 // used to display product detail
 app.get('/product-detail', function(req, res) {
   var id = req.query.id;
@@ -95,8 +108,8 @@ app.get('/category-names', function(req, res) {
   });
 });
 
-app.get('*', function(req, res) {
-  res.redirect('/');
+app.get('/*', function(req, res) {
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 app.listen(port);

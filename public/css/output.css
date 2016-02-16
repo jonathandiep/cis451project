@@ -12,7 +12,10 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
   display: block; }
 
 .fa-shopping-cart {
-  padding-top: 10px; }
+  padding-top: 5px; }
+
+#cart {
+  padding-top: 15px; }
 
 /* category | products */
 .category-images {
@@ -38,6 +41,16 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
     color: #333; }
   .thumbnail img {
     width: 100%; }
+
+.product-image-wrapper {
+  max-height: 400px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto; }
+  .product-image-wrapper .product-image {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto; }
 
 #search-bar {
   float: right; }
