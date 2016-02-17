@@ -9,7 +9,7 @@ app.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationPro
     title: 'Category',
     templateUrl: 'views/category.html',
     controller: 'categoryCtrl'
-  }).when('/product/:productid', {
+  }).when('/product/:productID', {
     title: 'Product',
     templateUrl: 'views/product.html',
     controller: 'productCtrl'
@@ -41,7 +41,7 @@ app.controller('commonCtrl', ['$location', '$scope', '$http', ($location, $scope
       }
     };
 
-    $http(req).then(res => {
+    $http(req).then((res) => {
       $scope.data = res.data;
       console.log($scope.data);
     });

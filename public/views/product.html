@@ -1,8 +1,8 @@
 <ol class="breadcrumb">
   <li><a href="/">Home</a></li>
   <li><a ng-href="/category/{{categories.parent}}">{{categories.parent}}</a></li>
-  <li><a ng-href="/category/{{categories.parent}}/{{categories.categoryname}}">{{categories.categoryname}}</a></li>
-  <li class="active">{{product.productname}}</li>
+  <li><a ng-href="/category/{{categories.parent}}/{{categories.categoryName}}">{{categories.categoryName}}</a></li>
+  <li class="active">{{product.productName}}</li>
 </ol>
 
 <div class="row">
@@ -14,15 +14,15 @@
 
     <div class="thumbnail">
       <div class="product-image-wrapper">
-        <img class="img-responsive product-image" ng-src="/images/{{product.productid}}.jpg" alt="">
+        <img class="img-responsive product-image" ng-src="/images/{{product.productID}}.jpg" alt="">
       </div>
       <div class="caption-full">
         <div class="pull-right">
-          <h3>{{product.productprice}}</h3>
+          <h3>{{product.productPrice}}</h3>
           <button type="button" class="btn btn-primary btn-xs">Add to Cart <i class="fa fa-shopping-cart"></i></button>
         </div>
-        <h3>{{product.productname}}</h3>
-        <p>{{product.productdescription}}</p>
+        <h3>{{product.productName}}</h3>
+        <p>{{product.productDescription}}</p>
       </div>
     </div>
 

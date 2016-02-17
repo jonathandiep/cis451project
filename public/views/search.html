@@ -12,15 +12,15 @@
 
     <div class="row">
 
-      <div class="col-sm-6 col-lg-6 col-md-6" ng-href="/product/{{product.productid}}" ng-repeat="product in results">
+      <div class="col-sm-6 col-lg-6 col-md-6" ng-href="/product/{{product.productID}}" ng-repeat="product in results">
         <div class="thumbnail">
-          <img class="category-images" ng-src="images/{{product.productid}}.jpg" alt="">
+          <img class="category-images" ng-src="images/{{product.productID}}.jpg" alt="">
           <div class="caption">
             <h4>
-              <a ng-href="/product/{{product.productid}}">{{product.productname}}</a>
+              <a ng-href="/product/{{product.productID}}">{{product.productName}}</a>
             </h4>
-            <h4 class="pull-right">{{product.productprice}}</h4>
-            <p>{{product.productdescription}}</p>
+            <h4 class="pull-right">{{product.productPrice}}</h4>
+            <p>{{product.productDescription}}</p>
           </div>
         </div>
       </div>

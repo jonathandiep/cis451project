@@ -1,13 +1,13 @@
 angular.module('product', ['ngRoute'])
 
 .controller('productCtrl', ['$scope', '$http', '$routeParams', ($scope, $http, $routeParams) => {
-  $scope.productid = $routeParams.productid;
+  $scope.productID = $routeParams.productID;
 
    var req1 = {
      method: 'GET',
      url: 'http://localhost:5000/product-detail',
      params: {
-       id: $scope.productid
+       id: $scope.productID
      }
    };
 
@@ -17,7 +17,7 @@ angular.module('product', ['ngRoute'])
        method: 'GET',
        url: 'http://localhost:5000/category-names',
        params: {
-         id: $scope.product.categoryid
+         id: $scope.product.categoryID
        }
      };
      $http(req2).then((ress) => {
