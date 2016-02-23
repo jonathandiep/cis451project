@@ -16,10 +16,14 @@
       <div class="product-image-wrapper">
         <img class="img-responsive product-image" ng-src="/images/{{product.productID}}.jpg" alt="">
       </div>
-      <div class="caption-full">
+      <div class="caption-full" id="extend-capt">
         <div class="pull-right">
           <h3>{{product.productPrice}}</h3>
-          <button type="button" class="btn btn-primary btn-xs">Add to Cart <i class="fa fa-shopping-cart"></i></button>
+          <div class="input-group">
+            <div id="qty-text">Quantity:   </div>
+            <input id="product-qty" type="text" ng-value="quantity" ng-model="quantity" />
+          </div>
+          <button type="button" class="btn btn-primary btn-xs" ng-click="addToCart(product)">Add to Cart <i class="fa fa-shopping-cart"></i></button>
         </div>
         <h3>{{product.productName}}</h3>
         <p>{{product.productDescription}}</p>

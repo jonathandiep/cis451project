@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'home', 'category', 'product', 'search', 'cart']);
+var app = angular.module('app', ['ngRoute', 'ngCookies', 'home', 'category', 'product', 'search', 'cart']);
 
 app.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) => {
   $routeProvider.when('/', {
@@ -29,8 +29,14 @@ app.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationPro
 
 }]);
 
-app.controller('commonCtrl', ['$location', '$scope', '$http', ($location, $scope, $http) => {
+app.controller('commonCtrl', ['$location', '$cookies', '$scope', '$http', ($location, $cookies, $scope, $http) => {
   $scope.term;
+
+  var cookie = $cookies.get('cookieName');
+
+  $cookies.put('cookieName', cookie, {
+    expires: new Date(Date.now() + 900000)
+  });
 
   $scope.results = () => {
     var req = {
@@ -45,6 +51,7 @@ app.controller('commonCtrl', ['$location', '$scope', '$http', ($location, $scope
       $scope.data = res.data;
       console.log($scope.data);
     });
+
   }
 
   $scope.go = (path) => {

@@ -52,6 +52,19 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
     max-width: 100%;
     width: auto; }
 
+#extend-capt {
+  padding-bottom: 50px; }
+
+#product-qty {
+  display: inline-block;
+  float: right;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  max-width: 25px; }
+
+#qty-text {
+  display: inline-block; }
+
 #search-bar {
   float: right; }
 
