@@ -1,6 +1,6 @@
+/* CSS */
 body {
-  padding-top: 70px;
-  /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */ }
+  padding-top: 70px; }
 
 .hero-spacer {
   margin-top: 50px; }
@@ -14,7 +14,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 .fa-shopping-cart {
   padding-top: 5px; }
 
-#cart {
+#cart-icon {
   padding-top: 15px; }
 
 /* category | products */
@@ -33,6 +33,11 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
   overflow: hidden; }
   .caption h4 {
     white-space: nowrap; }
+
+.caption-product {
+  max-width: 350px;
+  width: 100%;
+  float: right; }
 
 .thumbnail {
   padding: 0; }
@@ -67,6 +72,17 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 
 #search-bar {
   float: right; }
+
+/* Cart */
+.cart-images {
+  max-height: 200px;
+  width: auto; }
+
+#cart-qty {
+  display: inline-block;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  max-width: 25px; }
 
 footer {
   margin: 25px 0; }

@@ -5,29 +5,36 @@
 
 <div class="row">
 
-  <div class="col-md-3"></div>
+  <div class="col-md-2"></div>
 
-  <div class="col-md-5">
-    <h3>Your Shopping Cart:</h3>
-
+  <div class="col-md-8">
+    <div>
+      <h3>Your Shopping Cart:</h3>
+      <p class="pull-right"><a ng-click="clearCart()">Clear Cart</a></p>
+    </div>
     <div class="row">
 
       <div class="col-sm-12 col-lg-12 col-md-12" ng-repeat="product in cartProducts" ng-href="/product/{{product.productID}}" ng-repeat="product in results">
-        <div class="thumbnail">
-          <img class="category-images" ng-src="images/{{product.productID}}.jpg" alt="">
-          <div class="caption">
-            <h4>
-              <a ng-href="/product/{{product.productID}}">{{product.productName}}</a>
-            </h4>
-            <h4 class="pull-right">{{product.price}}</h4>
-            <p>Quantity: {{product.quantity}}</p>
+        <img class="cart-images" ng-src="images/{{product.productID}}.jpg" alt="">
+        <div class="caption caption-product">
+          <a class="pull-right" ng-click="deleteFromCart(product.productID)"><i class="fa fa-times"></i></a>
+          <h4>
+            <a ng-href="/product/{{product.productID}}">{{product.productName}}</a>
+          </h4>
+          <div class="pull-right">
+            <h3>${{(productQtyPrice(product)).toFixed(2)}}</h3>
+
+
           </div>
+          <p>Quantity: <input id="cart-qty" type="text" ng-value="product.quantity" ng-model="product.quantity" ng-change="toggleOnce()" /> <a ng-show="updateVar" ng-click="updateQty(product)">Update</a></p>
+
+          <h5>${{product.price}} ea.</h5>
+
         </div>
       </div>
 
     </div>
   </div>
 
-  <div class="col-md-2"></div>
 
 </div>

@@ -1,6 +1,6 @@
 angular.module('product', ['ngRoute'])
 
-.controller('productCtrl', ['$scope', '$http', '$routeParams', ($scope, $http, $routeParams) => {
+.controller('productCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$location', 'cartService', ($scope, $rootScope, $http, $routeParams, $location, cartService) => {
   $scope.productID = $routeParams.productID;
   $scope.quantity = 1;
 
@@ -38,9 +38,9 @@ angular.module('product', ['ngRoute'])
        }
      };
      $http(req3).then(res => {
-       console.log(res);
+       $rootScope.cart = cartService.getCount();
+       $location.path('/cart');
      });
    };
-
 
 }]);

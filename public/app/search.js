@@ -11,7 +11,7 @@ angular.module('search', ['ngRoute'])
     }
   };
 
-  $http(req).then((res) => {
+  $http(req).then(res => {
     $scope.results = res.data;
   });
 

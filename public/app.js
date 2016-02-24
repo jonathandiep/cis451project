@@ -35,7 +35,7 @@ app.controller('commonCtrl', ['$location', '$cookies', '$scope', '$http', ($loca
   var cookie = $cookies.get('cookieName');
 
   $cookies.put('cookieName', cookie, {
-    expires: new Date(Date.now() + 900000)
+    expires: new Date(Date.now() + 1800000)
   });
 
   $scope.results = () => {

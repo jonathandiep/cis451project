@@ -18,7 +18,7 @@ app.use((req, res, next) => {
   if (cookie === undefined) {
     var randNum = Math.random().toString();
     randNum = randNum.substring(2, randNum.length);
-    res.cookie('cookieName', randNum, { maxAge: 900000 });
+    res.cookie('cookieName', randNum, { maxAge: 1800000 });
     console.log(`cookie created successfully: ${cookie}`);
   } else {
     console.log(`cookie exists: ${cookie}`);
@@ -130,43 +130,49 @@ app.get('/add-to-cart', (req, res) => {
   var name = req.query.name;
   var price = req.query.price;
   var quantity = Number(req.query.quantity);
+  var time = Date.now();
 
   if (name.includes("'")) {
     var append = "'" + name.substring(name.indexOf("'"));
     name = name.substring(0, name.indexOf("'")) + append;
   }
-  console.log(cookie);
-  console.log(prodID);
-  console.log(name);
-  console.log(price);
-  console.log(quantity);
-  //res.send('works');
 
-  // select * from 'cartLine' find cookie and id
-  // if none, add to database
-  // otherwise, update quantity
   client.query(`SELECT * FROM "CartLine" WHERE "cartID" = '${cookie}' AND "productID" = '${prodID}'`, (er, result) => {
     if (er) { err('error running query'); }
-    //console.log(result);
-    //res.send(result);
     if (result.rows.length === 0) {
-      client.query(`INSERT INTO "CartLine" ("cartID", "productID", "productName", "price", "quantity") VALUES ('${cookie}', '${prodID}', '${name}', '${price}', ${quantity})`, (err, result) => {
-        //          INSERT INTO "CartLine" ("cartID", "productID", "productName", "price", "quantity") Values ('123123123', 'prodID', 'Product Name', '$123', 1)
+      client.query(`INSERT INTO "CartLine" ("cartID", "productID", "productName", "price", "quantity", "time") VALUES ('${cookie}', '${prodID}', '${name}', '${price}', ${quantity}, ${time})`, (err, result) => {
         if (err) { console.error('error running query', err); }
 
-        console.log(result);
         res.send('insert');
       });
     } else {
       client.query(`UPDATE "CartLine" SET "quantity" = ${quantity} WHERE "cartID" = '${cookie}' AND "productID" = '${prodID}'`, (err, result) => {
         if (err) { console.error('error running query'); }
 
-        console.log(result);
         res.send('update');
       });
     }
   });
 
+});
+
+app.get('/delete-from-cart', (req, res) => {
+  var cart = req.cookies.cookieName;
+  var product = req.query.productID;
+  client.query(`DELETE FROM "CartLine" WHERE "cartID" = '${cart}' AND "productID" = '${product}'`, (err, result) => {
+    if (err) { console.log('error running query'); }
+
+    res.send(result);
+  })
+});
+
+app.get('/clear-cart', (req, res) => {
+  var cart = req.cookies.cookieName;
+  client.query(`DELETE FROM "CartLine" WHERE "cartID" = '${cart}'`, (err, result) => {
+    if (err) { console.error('error running query'); }
+
+    res.send(result);
+  });
 });
 
 app.get('/cart-items', (req, res) => {

@@ -1,6 +1,7 @@
+/* CSS */
+
 body {
   padding-top: 70px;
-  /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
 .hero-spacer {
@@ -19,7 +20,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
   padding-top: 5px;
 }
 
-#cart {
+#cart-icon {
   padding-top: 15px;
 }
 
@@ -43,6 +44,12 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
     h4 {
       white-space: nowrap;
     }
+}
+
+.caption-product {
+  max-width: 350px;
+  width: 100%;
+  float: right;
 }
 
 .thumbnail {
@@ -80,12 +87,27 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
   max-width: 25px;
 }
 
+
 #qty-text {
   display: inline-block;
 }
 
 #search-bar {
   float: right;
+}
+
+/* Cart */
+
+.cart-images {
+  max-height: 200px;
+  width: auto;
+}
+
+#cart-qty {
+  display: inline-block;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  max-width: 25px;
 }
 
 footer {
