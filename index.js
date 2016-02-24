@@ -19,9 +19,6 @@ app.use((req, res, next) => {
     var randNum = Math.random().toString();
     randNum = randNum.substring(2, randNum.length);
     res.cookie('cookieName', randNum, { maxAge: 1800000 });
-    console.log(`cookie created successfully: ${cookie}`);
-  } else {
-    console.log(`cookie exists: ${cookie}`);
   }
   next();
 });

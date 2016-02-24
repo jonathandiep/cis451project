@@ -63,7 +63,6 @@ angular.module('cart', ['ngRoute', 'ngCookies'])
       url: 'http://localhost:5000/clear-cart'
     };
     $http(req4).then(res => {
-      console.log(res);
       $rootScope.cart = cartService.getCount();
       $route.reload();
     })
