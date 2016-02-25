@@ -26,13 +26,13 @@
 
 
           </div>
-          <p>Quantity: <input id="cart-qty" type="text" ng-value="product.quantity" ng-model="product.quantity" ng-change="toggleOnce()" /> <a ng-show="updateVar" ng-click="updateQty(product)">Update</a></p>
+          <p>Quantity: <input id="cart-qty" type="number" min="1" ng-value="product.quantity" ng-model="product.quantity" ng-change="toggleOnce()" /> <a ng-show="updateVar" ng-click="updateQty(product)">Update</a></p>
 
           <h5>${{product.price}} ea.</h5>
 
         </div>
       </div>
-
+      <h3 class="pull-right">Total: ${{price.toFixed(2)}}</h3>
     </div>
   </div>
 

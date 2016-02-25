@@ -21,7 +21,7 @@
           <h4>${{product.productPrice}}</h4>
           <div class="input-group">
             <div id="qty-text">Quantity:   </div>
-            <input id="product-qty" type="text" ng-value="quantity" ng-model="quantity" />
+            <input id="product-qty" type="number" ng-value="quantity" ng-model="quantity" />
           </div>
           <button type="button" class="btn btn-primary btn-xs" ng-click="addToCart(product)">Add to Cart <i class="fa fa-shopping-cart"></i></button>
         </div>

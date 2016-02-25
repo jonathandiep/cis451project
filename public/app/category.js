@@ -20,7 +20,7 @@ angular.module('category', ['ngRoute'])
     }
   }
 
-  $http(req1).then(res => {
+  $http(req1).then((res) => {
     $scope.products = res.data;
   })
 
@@ -32,7 +32,7 @@ angular.module('category', ['ngRoute'])
     }
   };
 
-  $http(req2).then(res => {
+  $http(req2).then((res) => {
     $scope.list = res.data;
   })
 

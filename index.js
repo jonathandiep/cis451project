@@ -143,7 +143,8 @@ app.get('/add-to-cart', (req, res) => {
         res.send('insert');
       });
     } else {
-      client.query(`UPDATE "CartLine" SET "quantity" = ${quantity} WHERE "cartID" = '${cookie}' AND "productID" = '${prodID}'`, (err, result) => {
+      var newQty = result.rows[0].quantity + quantity;
+      client.query(`UPDATE "CartLine" SET "quantity" = ${newQty} WHERE "cartID" = '${cookie}' AND "productID" = '${prodID}'`, (err, result) => {
         if (err) { console.error('error running query'); }
 
         res.send('update');
@@ -153,6 +154,7 @@ app.get('/add-to-cart', (req, res) => {
 
 });
 
+// used to delete an item from cart
 app.get('/delete-from-cart', (req, res) => {
   var cart = req.cookies.cookieName;
   var product = req.query.productID;
@@ -163,6 +165,7 @@ app.get('/delete-from-cart', (req, res) => {
   })
 });
 
+// used to delete all items from cart
 app.get('/clear-cart', (req, res) => {
   var cart = req.cookies.cookieName;
   client.query(`DELETE FROM "CartLine" WHERE "cartID" = '${cart}'`, (err, result) => {
@@ -172,6 +175,7 @@ app.get('/clear-cart', (req, res) => {
   });
 });
 
+// used to return data displaying all items in the cart
 app.get('/cart-items', (req, res) => {
   client.query(`SELECT * FROM "CartLine" WHERE "cartID" = '${req.cookies.cookieName}'`, (err, result) => {
     if (err) { console.log('error running query'); }

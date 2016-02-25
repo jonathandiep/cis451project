@@ -3,7 +3,7 @@ angular.module('cart', ['ngRoute', 'ngCookies'])
 .controller('cartCtrl', ['$scope', '$rootScope', '$cookies', '$http', '$route', 'cartService', ($scope, $rootScope, $cookies, $http, $route, cartService) => {
   $rootScope.cart;
   $scope.updateVar = false;
-
+  $scope.price = 0;
 
   $scope.toggleOnce = () => {
     $scope.updateVar = true;
@@ -18,10 +18,15 @@ angular.module('cart', ['ngRoute', 'ngCookies'])
     url: 'http://localhost:5000/cart-items'
   };
 
-  $http(req1).then(res => {
+  $http(req1).then((res) => {
     $scope.cartProducts = res.data;
     cartService.setCount($scope.cartProducts.length);
     $scope.updateCart();
+    for (var i = 0; i < $scope.cartProducts.length; i++) {
+      var qty = $scope.cartProducts[i].quantity;
+      var price = $scope.cartProducts[i].price;
+      $scope.price += qty * price;
+    }
   })
 
   $scope.updateCart = () => {
@@ -39,7 +44,7 @@ angular.module('cart', ['ngRoute', 'ngCookies'])
         quantity: product.quantity
       }
     };
-    $http(req2).then(res => {
+    $http(req2).then((res) => {
       $route.reload();
     })
   };
@@ -52,7 +57,7 @@ angular.module('cart', ['ngRoute', 'ngCookies'])
         productID: productID
       }
     };
-    $http(req3).then(res => {
+    $http(req3).then((res) => {
       $route.reload();
     })
   };
@@ -62,7 +67,7 @@ angular.module('cart', ['ngRoute', 'ngCookies'])
       method: 'GET',
       url: 'http://localhost:5000/clear-cart'
     };
-    $http(req4).then(res => {
+    $http(req4).then((res) => {
       $rootScope.cart = cartService.getCount();
       $route.reload();
     })

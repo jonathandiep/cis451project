@@ -12,7 +12,7 @@ angular.module('product', ['ngRoute'])
      }
    };
 
-   $http(req1).then(res => {
+   $http(req1).then((res) => {
      $scope.product = res.data[0];
      var req2 = {
        method: 'GET',
@@ -37,7 +37,7 @@ angular.module('product', ['ngRoute'])
          quantity: $scope.quantity
        }
      };
-     $http(req3).then(res => {
+     $http(req3).then((res) => {
        $rootScope.cart = cartService.getCount();
        $location.path('/cart');
      });
