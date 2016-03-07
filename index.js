@@ -184,6 +184,26 @@ app.get('/cart-items', (req, res) => {
   });
 });
 
+app.get('/user-info-to-database', (req, res) => {
+  var userID = req.cookies.cookieName;
+  var firstName = req.query.firstName;
+  var lastName = req.query.lastName;
+  var address = req.query.address;
+  var city = req.query.city;
+  var state = req.query.state;
+  var zip = req.query.zip;
+  var email = req.query.email;
+  var phoneNumber = req.query.phoneNumber;
+  var cardNum = req.query.cardNum;
+  var cardType = req.query.cardType;
+  var cardExpDate = req.query.cardExpDate;
+  client.query(`INSERT INTO "OrderHead" ("firstName", "lastName", "address", "city", "state", "zip", "email", "phoneNumber", "cardNumber", "cardType", "cardExpirationDate", "userID") VALUES ('${firstName}', '${lastName}', '${address}', '${city}', '${state}', '${zip}', '${email}', '${phoneNumber}', '${cardNum}', '${cardType}', '${cardExpDate}', '${userID}')`, (err, result) => {
+    if (err) { console.error("error running query", err); }
+
+    res.send('added info to database');
+  });
+});
+
 app.get('/*', (req, res) => {
   res.sendFile(`${__dirname}/public/index.html`);
 });
