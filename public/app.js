@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ngCookies', 'home', 'category', 'product', 'search', 'cart', 'checkout']);
+var app = angular.module('app', ['ngRoute', 'ngCookies', 'home', 'category', 'product', 'search', 'cart', 'checkout', 'receipt']);
 
 app.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) => {
   $routeProvider.when('/', {
@@ -25,6 +25,10 @@ app.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationPro
     title: 'Checkout',
     templateUrl: 'views/checkout.html',
     controller: 'checkoutCtrl'
+  }).when('/receipt', {
+    title: 'Receipt',
+    templateUrl: 'views/receipt.html',
+    controller: 'receiptCtrl'
   }).otherwise({
     redirectTo: '/'
   });

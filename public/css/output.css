@@ -87,6 +87,10 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 footer {
   margin: 25px 0; }
 
+/* Receipt */
+.text-right {
+  text-align: right; }
+
 /* ETC */
 @media (min-width: 979px) {
   ul.nav li.dropdown:hover > ul.dropdown-menu {

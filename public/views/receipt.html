@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <h2>La Shope - Receipt</h2>
+    <div class="row" ng-repeat="product in products">
+      <div class="col-xs-6">
+        <p>{{product.productName}} ({{product.quantity}})</p>
+      </div>
+      <div class="col-xs-6">
+        <p class="text-right">${{(product.price * product.quantity).toFixed(2)}}</p>
+      </div>
+    </div><br />
+    <div class="row">
+      <div class="col-xs-3 col-xs-offset-9">
+        <p class="text-right">Subtotal: ${{subtotal.toFixed(2)}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3 col-xs-offset-9">
+        <p class="text-right">Tax: ${{tax.toFixed(2)}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3 col-xs-offset-9">
+        <p class="text-right">Shipping: FREE</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3 col-xs-offset-9">
+        <p class="text-right">Total: ${{total.toFixed(2)}}</p>
+      </div>
+    </div>
+  </div>
+</div>

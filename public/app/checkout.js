@@ -1,7 +1,6 @@
 angular.module('checkout', ['ngRoute'])
 
-.controller('checkoutCtrl', ['$scope', '$http', '$cookies', ($scope, $http, $cookies) => {
-  var cookie = $cookies.get('cookieName');
+.controller('checkoutCtrl', ['$scope', '$http', '$location', ($scope, $http, $location) => {
 
   $scope.submit = () => {
     var req = {
@@ -22,128 +21,7 @@ angular.module('checkout', ['ngRoute'])
       }
     };
     $http(req).then((res) => {
-      console.log(res);
+      $location.path('/receipt');
     })
   }
 }]);
-
-/*
-.service('checkoutService', () => {
-  var firstName, lastName, address, city, state, zip, email, phoneNumber;
-  var cardNum, cardType, cardExpDate;
-
-  var setFirstName = (s) => {
-    firstName = s;
-  }
-
-  var getFirstName = () => {
-    return firstName;
-  }
-
-  var setLastName = (s) => {
-    lastName = s;
-  }
-
-  var getLastName = () => {
-    return lastName;
-  }
-
-  var setAddress = (s) => {
-    address = s;
-  }
-
-  var getAddress = () => {
-    return address;
-  }
-
-  var setCity = (s) => {
-    city = s;
-  }
-
-  var getCity = () => {
-    return city;
-  }
-
-  var setState = (s) => {
-    state = s;
-  }
-
-  var getState = () => {
-    return state;
-  }
-
-  var setZip = (s) => {
-    zip = s;
-  }
-
-  var getZip = () => {
-    return zip;
-  }
-
-  var setEmail = (s) => {
-    email = s;
-  }
-
-  var getEmail = () => {
-    return email;
-  }
-
-  var setPhoneNumber = (s) => {
-    phoneNumber = s;
-  }
-
-  var getPhoneNumber = () => {
-    return phoneNumber;
-  }
-
-  var setCardNum = (s) => {
-    cardNum = s;
-  }
-
-  var getCardNum = () => {
-    return cardNum;
-  }
-
-  var setCardType = (s) => {
-    cardType = s;
-  }
-
-  var getCardType = () => {
-    return cardType;
-  }
-
-  var setCardExpDate = (s) => {
-    cardExpDate = s;
-  }
-
-  var getCardExpDate = () => {
-    return cardExpDate;
-  }
-
-  return {
-    setFirstName: setFirstName,
-    getFirstName: getFirstName,
-    setLastName: setLastName,
-    getLastName: getLastName,
-    setAddress: setAddress,
-    getAddress: getAddress,
-    setCity: setCity,
-    getCity: getCity,
-    setState: setState,
-    getState: getState,
-    setZip: setZip,
-    getZip: getZip,
-    setEmail: setEmail,
-    getEmail: getEmail,
-    setPhoneNumber: setPhoneNumber,
-    getPhoneNumber: getPhoneNumber,
-    setCardNum: setCardNum,
-    getCardNum: getCardNum,
-    setCardType: setCardType,
-    getCardType: getCardType,
-    setCardExpDate: setCardExpDate,
-    getCardExpDate: getCardExpDate
-  }
-
-});
-*/

@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var app = express();
 var port = process.env.PORT || 5000;
+var sendgrid = require('sendgrid')('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');
 
 var pg = require('pg');
 var conString = "postgres://jonathandiep:SecurePassword123@localhost/cis";
@@ -184,6 +185,7 @@ app.get('/cart-items', (req, res) => {
   });
 });
 
+// used to add user checkout info to database
 app.get('/user-info-to-database', (req, res) => {
   var userID = req.cookies.cookieName;
   var firstName = req.query.firstName;
@@ -196,12 +198,57 @@ app.get('/user-info-to-database', (req, res) => {
   var phoneNumber = req.query.phoneNumber;
   var cardNum = req.query.cardNum;
   var cardType = req.query.cardType;
-  var cardExpDate = req.query.cardExpDate;
+  var cardExpDate = req.query.cardExpDate.substring(0, 7);
   client.query(`INSERT INTO "OrderHead" ("firstName", "lastName", "address", "city", "state", "zip", "email", "phoneNumber", "cardNumber", "cardType", "cardExpirationDate", "userID") VALUES ('${firstName}', '${lastName}', '${address}', '${city}', '${state}', '${zip}', '${email}', '${phoneNumber}', '${cardNum}', '${cardType}', '${cardExpDate}', '${userID}')`, (err, result) => {
     if (err) { console.error("error running query", err); }
 
     res.send('added info to database');
   });
+});
+
+// used to get user info from database
+app.get('/get-user-info', (req, res) => {
+  var userID = req.cookies.cookieName;
+  client.query(`SELECT * FROM "OrderHead" WHERE "userID" = '${userID}'`, (err, result) => {
+    if (err) { console.error('error running query'); }
+
+    res.send(result.rows);
+  })
+});
+
+// used for sendgrid api to email a receipt
+app.get('/send-receipt', (req, res) => {
+  console.log(JSON.stringify(JSON.parse(req.query.products), null, 2));
+  console.log(JSON.stringify(JSON.parse(req.query.userInfo), null, 2));
+  var products = JSON.parse(req.query.products);
+  var userInfo = JSON.parse(req.query.userInfo);
+  var subtotal = Number(req.query.subtotal).toFixed(2);
+  var tax = Number(req.query.tax).toFixed(2);
+  var total = Number(req.query.total).toFixed(2);
+
+  var email = new sendgrid.Email({
+    to: userInfo['email'],
+    from: 'receipt@lashope.com',
+    subject: 'Thanks for your purchase - La Shope'
+  });
+  email.html = '<h1>Your Order</h1>';
+  for (let i = 0; i < products.length; i++) {
+    var qtyPrice = products[i].price * products[i].quantity;
+    email.html += `<p>${products[i].productName} (${products[i].quantity}) @ $${products[i].price} ea. - $${qtyPrice}</p>`
+  }
+  email.html += `<div><p>Subtotal: $${subtotal}</p>`;
+  email.html += `<p>Tax: $${tax}</p><p>Shipping: FREE</p>`;
+  email.html += `<p>Total: $${total}</p></div>`;
+  email.html += `<h4>Shipping to:</h4><p>${userInfo.firstName} ${userInfo.lastName}</p>`;
+  email.html += `<p>${userInfo.address}</p><p>${userInfo.city}, ${userInfo.state} ${userInfo.zip}</p>`;
+  email.html += `<p>${userInfo.phoneNumber}</p>`;
+  email.addFilter('templates', 'enable', 1);
+  email.addFilter('templates', 'template_id', '515ee085-113e-46da-a9a8-37776c87e669');
+  sendgrid.send(email, (err, json) => {
+    if (err) { return console.error(err); }
+    console.log(json);
+  });
+
 });
 
 app.get('/*', (req, res) => {
