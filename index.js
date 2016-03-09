@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var app = express();
 var port = process.env.PORT || 5000;
-var sendgrid = require('sendgrid')('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');
+var sendgrid = require('sendgrid')('sendgridapikey');
 
 var pg = require('pg');
 var conString = "postgres://jonathandiep:SecurePassword123@localhost/cis";
