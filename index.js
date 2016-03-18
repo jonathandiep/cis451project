@@ -6,8 +6,7 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var app = express();
 var port = process.env.PORT || 5000;
-var sendgrid = require('sendgrid')('sendgridapikey');
-
+var sendgrid = require('sendgrid')('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');
 var pg = require('pg');
 var conString = "postgres://jonathandiep:SecurePassword123@localhost/cis";
 var client = new pg.Client(conString);
@@ -228,7 +227,7 @@ app.get('/send-receipt', (req, res) => {
 
   var email = new sendgrid.Email({
     to: userInfo['email'],
-    from: 'receipt@lashope.com',
+    from: 'receipt@la-shope.com',
     subject: 'Thanks for your purchase - La Shope'
   });
   email.html = '<h1>Your Order</h1>';

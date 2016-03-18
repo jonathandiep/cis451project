@@ -1,4 +1,4 @@
-TO DO:
+Project #3:
 - Checkout Page
   - Gather customer info:
     1. First name
